@@ -5,7 +5,7 @@ dotenv.load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-bvdc$vv27rnv%t$$o5rgnh5pchne@rlwzmrjp0y8o4=-#f_o)x'
+SECRET_KEY = os.getenv('SECRET_KEY') or 'django-insecure__:['
 
 DEBUG = os.getenv("DEBUG") == "True"
 
@@ -21,6 +21,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #apps
+    'Core_app',
+    'Rest_app',
+    #3rdapps
     'rest_framework',
     'dj_rest_auth',
     'rest_framework.authtoken',
@@ -42,10 +45,10 @@ MIDDLEWARE = [
 #!O DJANGO COMO SEMPRE É PESSIMO AO ENTREGAR ARQUIVOS ESTATICOS (NÃO SEI SE VOU USAR )
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-""" REST_AUTH = {
+REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'jwt-auth',
-} """
+}
 
 ROOT_URLCONF = 'Veiculos_project.urls'
 
