@@ -1,4 +1,4 @@
-from Carro_app.models import Carro
+from Carro_app.models import Carro, Modelo, Marca
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
@@ -16,3 +16,13 @@ class UserSerializer(serializers.ModelSerializer):
   def create(self, validated_data):
     user = User.objects.create_user(**validated_data)
     return user
+  
+class ModeloSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Modelo
+    fields = '__all__'
+    
+class MarcaSerializer(serializers.ModelSerializer):
+ class Meta:
+   model = Marca
+   fields = '__all__'

@@ -3,6 +3,9 @@ from pathlib import Path
 import dotenv
 dotenv.load_dotenv()
 
+
+#settings.configure()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY') or 'django-insecure__:['
@@ -23,6 +26,7 @@ INSTALLED_APPS = [
     #apps
     'Core_app',
     'Rest_app',
+    'Carro_app',
     #3rdapps
     'rest_framework',
     'dj_rest_auth',

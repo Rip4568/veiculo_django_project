@@ -5,6 +5,7 @@ from . import viewsets
 from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
 
 router = routers.DefaultRouter()
+router.register('carros-model-viewsets', viewsets.CarroModelViewSet, basename='CarroModelViewSet')
 
 urlpatterns = [
     #?rotas de autentificação do rest_framework utilizando JWT
