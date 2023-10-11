@@ -26,6 +26,10 @@ class CarroModelViewSet(viewsets.ModelViewSet):
         
         # Adicione o número total de páginas à resposta
         response.data['total_pages'] = total_pages
+        
+        #coloque as imagens e os albuns para seriliazar
+        for carro in response.data['results']:
+            carro["imagens"] = ImagemModelSerializer(Carro.objects.get(id=carro["id"]).albuns.first().imagens.all(), many=True).data
 
         return response
   

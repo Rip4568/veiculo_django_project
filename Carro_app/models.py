@@ -8,6 +8,7 @@ class Imagem(models.Model):
   imagem = models.ImageField(upload_to="media/", 
     height_field=None, width_field=None, 
      max_length=None, blank=True, null=True)
+  #album = models.ForeignKey("Album", on_delete=models.CASCADE, related_name="imagens", blank=True, null=True)
 
   def __str__(self):
     return f"{self.imagem}"
@@ -16,10 +17,11 @@ class Imagem(models.Model):
     db_table = 'imagens'
     managed = True
     verbose_name = 'Imagem'
-    verbose_name_plural = 'Imagems'
+    verbose_name_plural = 'Imagens'
 
 class Album(models.Model):
-  imagens = models.ManyToManyField(Imagem, verbose_name="imagens", blank=True)
+  carro = models.ForeignKey("Carro", on_delete=models.CASCADE, related_name="albuns", blank=True, null=True)
+  imagens = models.ManyToManyField(Imagem, related_name="albuns", blank=True, null=True)
 
   def __str__(self):
     return f"imagens: {self.imagens.count()}, carro: {self.carro.modelo}"
@@ -32,7 +34,6 @@ class Album(models.Model):
   
 
 class Carro(models.Model):
-    fotos = models.ForeignKey(Album, on_delete=models.SET_NULL, blank=True, null=True)
     modelo = models.ForeignKey("Modelo", on_delete=models.CASCADE)
     cor = models.CharField(max_length=255, choices=[
     ('Azul', 'Azul'),
