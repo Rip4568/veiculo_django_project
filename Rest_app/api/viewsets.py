@@ -10,7 +10,7 @@ from .serializers import (
     UserModelSerializer,
 )
 from django.contrib.auth.models import User
-from Carro_app.models import Carro
+from Carro_app.models import Carro, Modelo, Marca, Album, Imagem
 from rest_framework.pagination import PageNumberPagination
 
 class CarroModelViewSet(viewsets.ModelViewSet):
@@ -30,6 +30,9 @@ class CarroModelViewSet(viewsets.ModelViewSet):
         #coloque as imagens e os albuns para seriliazar
         for carro in response.data['results']:
             carro["imagens"] = ImagemModelSerializer(Carro.objects.get(id=carro["id"]).albuns.first().imagens.all(), many=True).data
+            carro["modelo"] = ModeloModelSerializer(Modelo.objects.get(id=carro["modelo"])).data
+            carro["modelo"]["marca"] = MarcaModelSerializer(Marca.objects.get(id=carro["modelo"]["marca"])).data
+            carro["proprietario"] = UserModelSerializer(Carro.objects.get(id=carro["proprietario"]).proprietario).data
 
         return response
   

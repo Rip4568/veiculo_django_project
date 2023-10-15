@@ -10,5 +10,7 @@ urlpatterns = [
     path('', include('Rest_app.urls')),
     #?rotas de autentificação do rest_framework
     path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('accounts/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
